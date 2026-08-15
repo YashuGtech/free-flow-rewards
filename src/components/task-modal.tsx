@@ -335,7 +335,8 @@ export default function TaskModal({
               )}
             </div>
 
-            {/* Submit */}
+            {/* Submit — free users must watch a rewarded ad (or go Premium)
+                before the claim is sent. Premium users skip this entirely. */}
             <div className="relative mt-6 flex items-center gap-3">
               <button
                 onClick={onClose}
@@ -344,20 +345,13 @@ export default function TaskModal({
                 Cancel
               </button>
               <button
-                disabled={!canSubmit}
+                disabled={!canSubmit || adBusy}
                 onClick={() => {
-                  setSubmitted(true);
-                  setTimeout(() => {
-                    // Referral: the description (proof.note) is the proof the
-                    // owner reads — never substitute the pre-filled @handle.
-                    submitClaim(
-                      task.id,
-                      isReferral ? proof.note || proof.handle || "" : proof.handle || proof.note || "",
-                      isReferral ? proof.note || "" : proof.handle || "",
-                      proof.link
-                    );
-                    onClose();
-                  }, 700);
+                  if (!isPremium && !adWatched) {
+                    setAskAd(true);
+                    return;
+                  }
+                  doSubmit();
                 }}
                 className="btn-primary flex-1 flex items-center justify-center gap-2"
               >
@@ -372,6 +366,49 @@ export default function TaskModal({
                 )}
               </button>
             </div>
+
+            {/* Premium-or-ad choice sheet (free users only) */}
+            {askAd && !isPremium && (
+              <div className="absolute inset-0 z-20 rounded-3xl bg-bg-base/90 backdrop-blur-md flex items-center justify-center p-6">
+                <div className="w-full max-w-sm glass-strong rounded-2xl border border-white/10 p-5 text-center">
+                  <div className="mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-glow">
+                    <Play className="w-5 h-5 text-white fill-current" />
+                  </div>
+                  <div className="mt-3 text-base font-extrabold">One step before you apply</div>
+                  <p className="mt-1.5 text-xs text-gray-400 leading-relaxed">
+                    Free accounts watch one short ad per application. Premium members apply
+                    instantly, with no ads anywhere in the app.
+                  </p>
+                  <button
+                    disabled={adBusy}
+                    onClick={() => void watchThenSubmit()}
+                    className="mt-4 w-full btn-primary inline-flex items-center justify-center gap-2 disabled:opacity-60"
+                  >
+                    {adBusy ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" /> Loading ad…
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-4 h-4 fill-current" /> Watch ad & apply
+                      </>
+                    )}
+                  </button>
+                  <a
+                    href="/profile"
+                    className="mt-2 w-full btn-ghost inline-flex items-center justify-center gap-2"
+                  >
+                    <Crown className="w-4 h-4 text-amber-300" /> Buy Premium · no ads
+                  </a>
+                  <button
+                    onClick={() => setAskAd(false)}
+                    className="mt-3 text-[11px] font-semibold text-gray-500 hover:text-white transition-colors"
+                  >
+                    Not now
+                  </button>
+                </div>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
