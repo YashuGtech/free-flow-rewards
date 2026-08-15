@@ -7,6 +7,7 @@ import PlatformIcon from "./platform-icon";
 import FollowButton from "./follow-button";
 import { useApp } from "@/lib/store";
 import { isTelegramWebApp } from "@/lib/supabase";
+import { showMonetagRewarded } from "@/lib/monetag";
 import clsx from "clsx";
 
 export default function TaskModal({
