@@ -21,6 +21,37 @@ export default function TaskModal({
   const [timer, setTimer] = useState(600);
   const [proof, setProof] = useState<{ file?: string; handle?: string; note?: string; link?: string }>({});
   const [submitted, setSubmitted] = useState(false);
+  // Free users see a "Buy Premium or watch an ad" choice before applying.
+  const [askAd, setAskAd] = useState(false);
+  const [adBusy, setAdBusy] = useState(false);
+  const [adWatched, setAdWatched] = useState(false);
+
+  function doSubmit() {
+    if (!task) return;
+    setAskAd(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      // Referral: the description (proof.note) is the proof the owner reads —
+      // never substitute the pre-filled @handle.
+      submitClaim(
+        task.id,
+        isReferral ? proof.note || proof.handle || "" : proof.handle || proof.note || "",
+        isReferral ? proof.note || "" : proof.handle || "",
+        proof.link
+      );
+      onClose();
+    }, 700);
+  }
+
+  async function watchThenSubmit() {
+    if (adBusy) return;
+    setAdBusy(true);
+    const completed = await showMonetagRewarded();
+    setAdBusy(false);
+    if (!completed) return; // the ad lib already toasted why
+    setAdWatched(true);
+    doSubmit();
+  }
 
   useEffect(() => {
     if (!task) return;
