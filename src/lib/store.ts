@@ -489,6 +489,9 @@ export const useApp = create<AppState>()(
           // expiry reach the user quickly instead of waiting out the 15-minute
           // user-data cache.
           const bansRes = await cachedQuery("bans:v1", 60_000, fetchBans);
+          // Wallet ledger rides its own short-TTL cache (60s) for the same
+          // reason: an admin "Add balance" credit must show up quickly.
+          const walletRes = await cachedQuery(`wallet:v1:${currentUserId()}`, 60_000, fetchWalletLedger);
           const settings = await cachedQuery("settings:v1", MARKETPLACE_CACHE_TTL, fetchSettings);
           const chats = await cachedQuery("chats:v1", MARKETPLACE_CACHE_TTL, fetchChats);
           // Public profiles feed getUser() so NO page ever shows demo users.
