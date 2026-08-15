@@ -691,6 +691,19 @@ export const useApp = create<AppState>()(
           if (me?.profile && tgiSync?.username && me.profile.tg !== tgiSync.username) {
             get().syncCollections(["profile"]);
           }
+          // Premium that ran out drops back to the free plan (ads + limits
+          // return) — the expiry date is authoritative, local or from the DB.
+          const exp = get().premiumExpiry;
+          if (get().isPremium && exp && exp <= Date.now()) {
+            set({ isPremium: false, premiumPlanId: null, premiumExpiry: null });
+            get().syncCollections(["profile"]);
+            get().pushNotification({
+              type: "system",
+              title: "Premium expired",
+              description: "Renew to keep ad-free browsing, unlimited posts and the verified tick.",
+              at: "Just now",
+            });
+          }
           // Free posts older than 9h are removed on every boot.
           get().expireFreePosts();
         } catch {
