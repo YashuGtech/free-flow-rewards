@@ -8,7 +8,7 @@
  */
 
 /**
- * The all-network USDT deposit wallet. Overridable via NEXT_PUBLIC_DEPOSIT_ADDRESS
+ * The all-network USDT deposit wallet. Overridable via VITE_DEPOSIT_ADDRESS
  * (keeps the app in sync with the `DEPOSIT_ADDRESS` secret used by the
  * verify_usdt edge function without code edits).
  */

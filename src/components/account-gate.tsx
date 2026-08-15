@@ -1,7 +1,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { LockKeyhole, Mail, Sparkles, UserRound } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useRouterState } from "@tanstack/react-router";
 import {
   isSupabaseReady,
   isTelegramWebApp,
@@ -11,7 +11,7 @@ import {
 } from "@/lib/supabase";
 
 export default function AccountGate({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [ready, setReady] = useState(false);
   const [mode, setMode] = useState<"signIn" | "signUp">("signIn");
   const [email, setEmail] = useState("");

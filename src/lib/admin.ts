@@ -3,8 +3,8 @@
  * Admin access for the professional admin panel (frontend-only — no backend).
  *
  * Access is granted when the current Telegram user id is listed in
- * NEXT_PUBLIC_ADMIN_TG_ID (comma-separated), or when a session passcode was
- * entered (NEXT_PUBLIC_ADMIN_PASSCODE, default "admin1234").
+ * VITE_ADMIN_TG_ID (comma-separated), or when a session passcode was
+ * entered (VITE_ADMIN_PASSCODE, default "admin1234").
  *
  * NOTE: this is client-side gating, sufficient for a small Telegram mini app
  * on free hosting. For hard security, protect the panel behind Supabase RLS
@@ -77,6 +77,6 @@ export function tryAdminPasscode(code: string): boolean {
 
 export function adminHint(): string {
   return import.meta.env.VITE_ADMIN_PASSCODE
-    ? "Passcode is configured via NEXT_PUBLIC_ADMIN_PASSCODE."
-    : `Default passcode: ${DEFAULT_PASSCODE} (change via NEXT_PUBLIC_ADMIN_PASSCODE).`;
+    ? "Passcode is configured via VITE_ADMIN_PASSCODE."
+    : `Default passcode: ${DEFAULT_PASSCODE} (change via VITE_ADMIN_PASSCODE).`;
 }

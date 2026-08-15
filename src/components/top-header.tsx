@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Search, ChevronDown, Settings, ShieldAlert, ShieldCheck, Zap, LogOut } from "lucide-react";
 import { useApp } from "@/lib/store";

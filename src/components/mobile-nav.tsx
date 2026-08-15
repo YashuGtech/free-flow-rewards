@@ -1,6 +1,6 @@
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 import { Zap, Rocket, ClipboardList, FileCheck2, User } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -14,7 +14,7 @@ const NAV = [
 ];
 
 export default function MobileNav() {
-  const path = usePathname();
+  const path = useRouterState({ select: (s) => s.location.pathname });
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 px-3 pb-3 pt-2">
       <div className="glass-strong border border-white/10 rounded-2xl px-2 py-2 shadow-card">

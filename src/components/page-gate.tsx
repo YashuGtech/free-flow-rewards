@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Lock, Zap, Play, Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { useApp } from "@/lib/store";
@@ -12,7 +12,7 @@ import { showMonetagRewarded } from "@/lib/monetag";
 const GATED = ["/promote", "/campaigns", "/leads", "/profile", "/users"];
 
 export default function PageGate({ children }: { children: React.ReactNode }) {
-  const path = usePathname();
+  const path = useRouterState({ select: (s) => s.location.pathname });
   const gated = GATED.some((p) => path === p || path.startsWith(`${p}/`));
   const pageCredits = useApp((s) => s.pageCredits);
   const isPremium = useApp((s) => s.isPremium);

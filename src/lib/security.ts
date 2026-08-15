@@ -9,7 +9,7 @@ import { emailUserInfo } from "./supabase";
  *   1. Anonymous running outside Telegram is restricted when REQUIRE_TELEGRAM=1;
  *      signed-in email accounts are allowed in browser mode.
  *   2. One Telegram account per device (multi-account → restricted) —
- *      TEMPORARILY DISABLED via NEXT_PUBLIC_ALLOW_MULTI_ACCOUNT=1 (owner
+ *      TEMPORARILY DISABLED via VITE_ALLOW_MULTI_ACCOUNT=1 (owner
  *      request). Set it back to 0 to re-enable the multi-account ban.
  *
  * NOTE: IP / VPN / IP-hopping checks were REMOVED on owner request ("turn off
@@ -151,7 +151,7 @@ export async function checkSecurity(): Promise<SecurityVerdict> {
     const user = tgUser();
 
     // ---- Telegram identity binding (multi-account) ----
-    // NEXT_PUBLIC_ALLOW_MULTI_ACCOUNT=1 (owner request) disables the
+    // VITE_ALLOW_MULTI_ACCOUNT=1 (owner request) disables the
     // one-account-per-device ban — any account may be used on this device.
     const allowMulti =
       import.meta.env.VITE_ALLOW_MULTI_ACCOUNT === "1";

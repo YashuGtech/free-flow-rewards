@@ -1,6 +1,6 @@
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
   Zap,
@@ -26,7 +26,7 @@ const NAV = [
 ];
 
 export default function Sidebar() {
-  const path = usePathname();
+  const path = useRouterState({ select: (s) => s.location.pathname });
   return (
     <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-[244px] z-30 flex-col p-4 border-r border-white/5 glass-strong">
       <Link href="/" className="flex items-center gap-3 px-2 py-3">

@@ -10,9 +10,9 @@
  * The values are configured via SEPARATE env vars (Next.js build-time for the
  * React app) or window.PP_LOYALTY_* globals (static build, see index.html):
  *
- *   NEXT_PUBLIC_LOYALTY_5STAR_BONUS   (default 1)
- *   NEXT_PUBLIC_LOYALTY_4STAR_BONUS   (default 0.5)
- *   NEXT_PUBLIC_LOYALTY_MAX_RATE      (default 100)
+ *   VITE_LOYALTY_5STAR_BONUS   (default 1)
+ *   VITE_LOYALTY_4STAR_BONUS   (default 0.5)
+ *   VITE_LOYALTY_MAX_RATE      (default 100)
  *
  * The admin panel's Loyalty tab surfaces the live values and env var names.
  */
@@ -22,9 +22,9 @@ export const LOYALTY_4STAR_BONUS = Number(import.meta.env.VITE_LOYALTY_4STAR_BON
 export const LOYALTY_MAX_RATE = Number(import.meta.env.VITE_LOYALTY_MAX_RATE ?? 100);
 
 /** Env var names — shown in the admin panel so the owner can find them. */
-export const LOYALTY_5STAR_ENV = "NEXT_PUBLIC_LOYALTY_5STAR_BONUS";
-export const LOYALTY_4STAR_ENV = "NEXT_PUBLIC_LOYALTY_4STAR_BONUS";
-export const LOYALTY_MAX_ENV = "NEXT_PUBLIC_LOYALTY_MAX_RATE";
+export const LOYALTY_5STAR_ENV = "VITE_LOYALTY_5STAR_BONUS";
+export const LOYALTY_4STAR_ENV = "VITE_LOYALTY_4STAR_BONUS";
+export const LOYALTY_MAX_ENV = "VITE_LOYALTY_MAX_RATE";
 
 /** Ratings the user has given (4★/5★ counters). */
 export interface LoyaltyGives {

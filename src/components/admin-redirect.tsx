@@ -1,16 +1,16 @@
 
 import { useEffect, useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouterState, useRouter } from "@tanstack/react-router";
 import { isAdmin } from "@/lib/admin";
 
 /**
  * Auto-redirect: when the owner/admin (TG id whitelisted via
- * NEXT_PUBLIC_ADMIN_TG_ID) opens the app, send them straight to the admin
+ * VITE_ADMIN_TG_ID) opens the app, send them straight to the admin
  * panel. Runs once per page load so the admin can still navigate the normal
  * app afterwards.
  */
 export default function AdminRedirect() {
-  const pathname = usePathname();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const router = useRouter();
   const ran = useRef(false);
 

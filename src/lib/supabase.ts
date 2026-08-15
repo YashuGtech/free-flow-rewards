@@ -9,7 +9,7 @@
  *     and deduped per row, so bursts of actions produce one upsert per table.
  *   - The queue flushes 3s after the last write, and on page hide.
  *
- * If NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY are missing or
+ * If VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY are missing or
  * placeholders, `isSupabaseReady()` is false and the app keeps running fully
  * offline on demo/seed data — nothing breaks.
  */

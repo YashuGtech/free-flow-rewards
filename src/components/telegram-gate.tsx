@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useRouterState } from "@tanstack/react-router";
 import { Send, Smartphone, Sparkles, ShieldCheck } from "lucide-react";
 import { isAdmin } from "@/lib/admin";
 
@@ -22,7 +22,7 @@ const BOT_URL = `https://t.me/${BOT_USERNAME}`;
  */
 export default function TelegramGate({ children }: { children: React.ReactNode }) {
   const [inTelegram, setInTelegram] = useState<boolean | null>(null);
-  const pathname = usePathname();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     try {
