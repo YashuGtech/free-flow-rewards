@@ -583,15 +583,20 @@ export const useApp = create<AppState>()(
                   four: Number(me.profile.four_star_gives ?? s.loyaltyGives?.four ?? 0),
                 };
               }
-              if (me.transactions.length) next.transactions = me.transactions;
+              // Prefer the fresh 60s ledger read (admin credits land fast);
+              // fall back to the 15-minute cached user-data read.
+              const ledger = walletRes?.ok && walletRes.transactions.length
+                ? walletRes.transactions
+                : me.transactions;
+              if (ledger.length) next.transactions = ledger;
               // Wallet balance in DB mode is derived from the transaction ledger
               // so a fresh device (no persisted state) restores the correct
               // `usdt`. Only wallet ledger types count — referral/bonus entries
               // feed the promo balance, which the referrals merge credits
               // separately above.
-              if (me.transactions.length) {
+              if (ledger.length) {
                 let usdtLedger = 0;
-                for (const t of me.transactions) {
+                for (const t of ledger) {
                   if (t.type !== "referral" && t.type !== "bonus") {
                     usdtLedger = Math.round((usdtLedger + Number(t.amount)) * 100) / 100;
                   }
