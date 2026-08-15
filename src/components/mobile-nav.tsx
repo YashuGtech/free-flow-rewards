@@ -1,5 +1,5 @@
 
-import { Link } from "@tanstack/react-router";
+import Link from "@/components/link";
 import { useRouterState } from "@tanstack/react-router";
 import { Zap, Rocket, ClipboardList, FileCheck2, User } from "lucide-react";
 import clsx from "clsx";

@@ -19,7 +19,7 @@ export default function AdminRedirect() {
     if (typeof window === "undefined") return;
     if (isAdmin() && pathname !== "/admin") {
       ran.current = true;
-      router.replace("/admin");
+      router.navigate({ to: "/admin", replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

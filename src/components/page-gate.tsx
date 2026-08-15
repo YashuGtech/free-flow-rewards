@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import Link from "@/components/link";
 import { useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Lock, Zap, Play, Loader2, ArrowLeft, Sparkles } from "lucide-react";

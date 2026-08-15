@@ -1,5 +1,5 @@
 
-import { Link } from "@tanstack/react-router";
+import Link from "@/components/link";
 import { useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
