@@ -36,6 +36,7 @@ import {
   fetchMarketplace,
   fetchMySubmissionsFresh,
   fetchBans,
+  fetchWalletLedger,
   fetchProfiles,
   fetchSettings,
   fetchUserData,
