@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "@/components/link";
 import { useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Lock, Zap, Play, Loader2, ArrowLeft, Sparkles } from "lucide-react";
+import { Lock, Zap, Play, Loader2, ArrowLeft, Sparkles, Crown } from "lucide-react";
 import { useApp } from "@/lib/store";
 import { showMonetagRewarded } from "@/lib/monetag";
 
@@ -96,6 +96,14 @@ export default function PageGate({ children }: { children: React.ReactNode }) {
               </>
             )}
           </button>
+
+          <Link
+            href="/profile"
+            className="mt-3 w-full btn-ghost inline-flex items-center justify-center gap-2"
+          >
+            <Crown className="w-4 h-4 text-amber-300" />
+            Buy Premium · unlimited pages, no ads
+          </Link>
 
           <Link
             href="/"
