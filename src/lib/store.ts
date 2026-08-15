@@ -746,6 +746,7 @@ export const useApp = create<AppState>()(
         // change and keeps the cache coherent for the next read.
         if (scopes.some((scope) => ["profile", "transactions", "deposits", "submissions"].includes(scope))) {
           invalidateCache(`${USER_CACHE_KEY}:${currentUserId()}`);
+          invalidateCache(`wallet:v1:${currentUserId()}`);
         }
         if (scopes.includes("submissions")) invalidateCache(MARKETPLACE_CACHE_KEY);
       },
