@@ -49,7 +49,7 @@ export interface Task {
   instructions?: string;
   likes?: number;
   boosted?: boolean;
-  boostUntil?: number;
+  boostUntil?: number | null;
   /** Search / ranking tags set by the publisher. */
   tags?: string[];
   /** When set (future timestamp), the ad is auto-disabled until then (daily lead cap hit). */
@@ -86,7 +86,7 @@ export interface Campaign {
   instructions?: string;
   likes?: number;
   boosted?: boolean;
-  boostUntil?: number;
+  boostUntil?: number | null;
   /** Search / ranking tags set by the publisher. */
   tags?: string[];
   /** When set (future timestamp), the ad is auto-disabled until then (daily lead cap hit). */
