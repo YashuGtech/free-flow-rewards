@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -512,3 +513,17 @@ export default function Promote() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/promote")({
+  component: Promote,
+  head: () => ({
+    meta: [
+      { title: "Promote Your Brand — PromoPulse" },
+      { name: "description", content: "Publish a social promotion campaign in minutes and get real engagement from the PromoPulse community." },
+      { property: "og:title", content: "Promote Your Brand — PromoPulse" },
+      { property: "og:description", content: "Publish a social promotion campaign in minutes and get real engagement from the PromoPulse community." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

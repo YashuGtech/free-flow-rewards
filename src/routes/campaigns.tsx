@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -451,3 +452,17 @@ export default function Campaigns() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/campaigns")({
+  component: Campaigns,
+  head: () => ({
+    meta: [
+      { title: "My Campaigns — PromoPulse" },
+      { name: "description", content: "Track your promotion campaigns, review submitted proofs and approve or reject leads in one place." },
+      { property: "og:title", content: "My Campaigns — PromoPulse" },
+      { property: "og:description", content: "Track your promotion campaigns, review submitted proofs and approve or reject leads in one place." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

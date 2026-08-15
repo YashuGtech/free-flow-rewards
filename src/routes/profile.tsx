@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -673,3 +674,17 @@ export default function Profile() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/profile")({
+  component: Profile,
+  head: () => ({
+    meta: [
+      { title: "Your Profile & Wallet — PromoPulse" },
+      { name: "description", content: "Manage your wallet, USDT deposits, premium plan, referrals and completed task history." },
+      { property: "og:title", content: "Your Profile & Wallet — PromoPulse" },
+      { property: "og:description", content: "Manage your wallet, USDT deposits, premium plan, referrals and completed task history." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

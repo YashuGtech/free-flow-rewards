@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -498,3 +499,17 @@ export default function Leads() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/leads")({
+  component: Leads,
+  head: () => ({
+    meta: [
+      { title: "Leads Inbox — PromoPulse" },
+      { name: "description", content: "Review incoming task submissions, verify proof and reward promoters who completed your campaigns." },
+      { property: "og:title", content: "Leads Inbox — PromoPulse" },
+      { property: "og:description", content: "Review incoming task submissions, verify proof and reward promoters who completed your campaigns." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

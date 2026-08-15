@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -483,3 +484,17 @@ function Stat({
     </div>
   );
 }
+
+export const Route = createFileRoute("/")({
+  component: EarnTasks,
+  head: () => ({
+    meta: [
+      { title: "PromoPulse — Earn Points From Social Tasks" },
+      { name: "description", content: "Browse promotion tasks from real creators, complete them and earn points you can spend promoting your own brand." },
+      { property: "og:title", content: "PromoPulse — Earn Points From Social Tasks" },
+      { property: "og:description", content: "Browse promotion tasks from real creators, complete them and earn points you can spend promoting your own brand." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

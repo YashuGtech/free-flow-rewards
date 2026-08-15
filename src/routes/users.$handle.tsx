@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -14,8 +15,8 @@ import SubmissionStatus from "@/components/submission-status";
 import PlatformIcon from "@/components/platform-icon";
 import clsx from "clsx";
 
-export default function UserPage({ params }: { params: { handle: string } }) {
-  const handle = params.handle;
+export default function UserPage() {
+  const { handle } = Route.useParams();
   const profile = getUser(handle);
   const { submissions, tasks, following, isPremiumUser, isBanned, handle: myHandle, isPremium: viewerIsPremium } = useApp();
   const isYou = handle === myHandle;
@@ -204,3 +205,17 @@ export default function UserPage({ params }: { params: { handle: string } }) {
     </div>
   );
 }
+
+export const Route = createFileRoute("/users/$handle")({
+  component: UserPage,
+  head: () => ({
+    meta: [
+      { title: "Creator Profile — PromoPulse" },
+      { name: "description", content: "See a creator's rating, active campaigns and completed promotions on PromoPulse." },
+      { property: "og:title", content: "Creator Profile — PromoPulse" },
+      { property: "og:description", content: "See a creator's rating, active campaigns and completed promotions on PromoPulse." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});

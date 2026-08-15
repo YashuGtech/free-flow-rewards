@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -1088,3 +1089,17 @@ function AdsTable({ title, rows, onBan, onDelete }: { title: string; rows: any[]
     </div>
   );
 }
+
+export const Route = createFileRoute("/admin")({
+  component: AdminPage,
+  head: () => ({
+    meta: [
+      { title: "Admin Console — PromoPulse" },
+      { name: "description", content: "Owner console for balances, withdrawals, bans, premium plans and platform moderation." },
+      { property: "og:title", content: "Admin Console — PromoPulse" },
+      { property: "og:description", content: "Owner console for balances, withdrawals, bans, premium plans and platform moderation." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});
