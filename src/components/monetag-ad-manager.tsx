@@ -8,6 +8,7 @@ import {
   startMonetagAutoAds,
   type AdFailReason,
 } from "@/lib/monetag";
+import { useApp } from "@/lib/store";
 
 /**
  * Global Monetag warm-up + ad-health banner, mounted once in the root layout.
@@ -21,8 +22,11 @@ import {
 export default function MonetagAdManager() {
   const [blocked, setBlocked] = useState<AdFailReason | null>(null);
   const dismissed = useRef(false);
+  // Premium is ad-free: never warm up or auto-run ads for a paying member.
+  const isPremium = useApp((s) => s.isPremium);
 
   useEffect(() => {
+    if (isPremium) return;
     startMonetagAutoAds();
     const unsubscribe = onMonetagStatusChange((status, reason) => {
       if (status === "ready" || status === "loading" || status === "idle") {
@@ -33,9 +37,9 @@ export default function MonetagAdManager() {
       }
     });
     return unsubscribe;
-  }, []);
+  }, [isPremium]);
 
-  if (!blocked) return null;
+  if (isPremium || !blocked) return null;
   const msg = AD_FAIL_MESSAGES[blocked];
   if (!msg) return null;
 
