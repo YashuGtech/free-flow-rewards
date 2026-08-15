@@ -1187,3 +1187,19 @@ export async function fetchChats(): Promise<ChatMessage[] | null> {
   if (error) return null;
   return (data ?? []).map(rowToChatMessage);
 }
+
+/** Fresh wallet ledger read with its own short-TTL cache (60s) so an admin
+ *  "Add balance" credit reaches the user's device within a minute instead of
+ *  waiting out the 15-minute user-data cache. `ok` is false when the DB didn't
+ *  answer, so callers keep their current local balance. */
+export async function fetchWalletLedger(): Promise<{ transactions: Transaction[]; ok: boolean }> {
+  const sb = getSupabase();
+  if (!sb) return { transactions: [], ok: false };
+  try {
+    const r = await sb.from("transactions").select("*").eq("owner", currentUserId()).limit(1000);
+    if (r.error) return { transactions: [], ok: false };
+    return { transactions: (r.data ?? []).map(rowToTransaction), ok: true };
+  } catch {
+    return { transactions: [], ok: false };
+  }
+}
