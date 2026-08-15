@@ -1,7 +1,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { X, ExternalLink, Send, Clock, ShieldAlert, CheckCircle2, Image as ImgIcon, Gift, Star, Link2 } from "lucide-react";
+import { X, ExternalLink, Send, Clock, ShieldAlert, CheckCircle2, Image as ImgIcon, Gift, Star, Link2, Play, Loader2, Crown } from "lucide-react";
 import { type Task, PLATFORM_META, getUser } from "@/lib/mock-data";
 import PlatformIcon from "./platform-icon";
 import FollowButton from "./follow-button";
