@@ -1,4 +1,3 @@
-"use client";
 
 /**
  * Frontend-only Supabase integration — NO backend / Node routes required.
@@ -32,8 +31,8 @@ import type {
   WithdrawalRequest,
 } from "./types";
 
-const URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const URL = import.meta.env.VITE_SUPABASE_URL || "";
+const KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "";
 
 let client: SupabaseClient | null = null;
 let adminSecret: string | null = null; // set after the admin panel unlocks
@@ -1091,7 +1090,7 @@ export interface ReportVerdict {
  * RLS), which is exactly why this runs server-side.
  */
 export async function submitReport(target: string, reason: string): Promise<ReportVerdict> {
-  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const base = import.meta.env.VITE_SUPABASE_URL;
   if (!base || !/^https?:\/\//.test(base)) throw new Error("Supabase is not configured");
   // The edge-function gateway requires a JWT (verify_jwt is on), so pass the
   // anon key exactly like the Supabase client does — otherwise every call is

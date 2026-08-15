@@ -1,4 +1,3 @@
-"use client";
 
 import { UserPlus, UserCheck } from "lucide-react";
 import { useApp } from "@/lib/store";

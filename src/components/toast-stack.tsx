@@ -1,4 +1,3 @@
-"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, AlertTriangle, Info, XCircle, Coins } from "lucide-react";

@@ -1,4 +1,3 @@
-"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { LockKeyhole, Mail, Sparkles, UserRound } from "lucide-react";

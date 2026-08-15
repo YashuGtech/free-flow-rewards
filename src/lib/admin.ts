@@ -1,4 +1,3 @@
-"use client";
 
 /**
  * Admin access for the professional admin panel (frontend-only — no backend).
@@ -57,18 +56,18 @@ export function tgId(): number | null {
 
 export function isAdmin(): boolean {
   if (typeof window === "undefined") return false;
-  const ids = (process.env.NEXT_PUBLIC_ADMIN_TG_ID || "")
+  const ids = (import.meta.env.VITE_ADMIN_TG_ID || "")
     .split(",")
     .map((s) => Number(s.trim()))
     .filter((n) => Number.isFinite(n) && n > 0);
   const id = tgId();
   if (ids.length > 0 && id !== null && ids.includes(id)) return true;
-  const pass = process.env.NEXT_PUBLIC_ADMIN_PASSCODE || DEFAULT_PASSCODE;
+  const pass = import.meta.env.VITE_ADMIN_PASSCODE || DEFAULT_PASSCODE;
   return readAuth() === pass;
 }
 
 export function tryAdminPasscode(code: string): boolean {
-  const pass = process.env.NEXT_PUBLIC_ADMIN_PASSCODE || DEFAULT_PASSCODE;
+  const pass = import.meta.env.VITE_ADMIN_PASSCODE || DEFAULT_PASSCODE;
   if (code.trim() === pass) {
     writeAuth(code.trim());
     return true;
@@ -77,7 +76,7 @@ export function tryAdminPasscode(code: string): boolean {
 }
 
 export function adminHint(): string {
-  return process.env.NEXT_PUBLIC_ADMIN_PASSCODE
+  return import.meta.env.VITE_ADMIN_PASSCODE
     ? "Passcode is configured via NEXT_PUBLIC_ADMIN_PASSCODE."
     : `Default passcode: ${DEFAULT_PASSCODE} (change via NEXT_PUBLIC_ADMIN_PASSCODE).`;
 }

@@ -1,11 +1,10 @@
-"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, ShieldCheck, ShieldAlert, Check, X, MessageSquareText } from "lucide-react";
 import { useApp } from "@/lib/store";
 
-const OWNER_TG = process.env.NEXT_PUBLIC_OWNER_TG || "owner";
+const OWNER_TG = import.meta.env.VITE_OWNER_TG || "owner";
 
 export default function ContactOwnerModal({ onClose }: { onClose: () => void }) {
   const { isPremium, contactSaved, markContactSaved } = useApp();

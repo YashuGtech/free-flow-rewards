@@ -1,4 +1,3 @@
-"use client";
 
 /**
  * Loyalty Rater — the "followers kept / success rate" shown on ads & profiles.
@@ -18,9 +17,9 @@
  * The admin panel's Loyalty tab surfaces the live values and env var names.
  */
 
-export const LOYALTY_5STAR_BONUS = Number(process.env.NEXT_PUBLIC_LOYALTY_5STAR_BONUS ?? 1);
-export const LOYALTY_4STAR_BONUS = Number(process.env.NEXT_PUBLIC_LOYALTY_4STAR_BONUS ?? 0.5);
-export const LOYALTY_MAX_RATE = Number(process.env.NEXT_PUBLIC_LOYALTY_MAX_RATE ?? 100);
+export const LOYALTY_5STAR_BONUS = Number(import.meta.env.VITE_LOYALTY_5STAR_BONUS ?? 1);
+export const LOYALTY_4STAR_BONUS = Number(import.meta.env.VITE_LOYALTY_4STAR_BONUS ?? 0.5);
+export const LOYALTY_MAX_RATE = Number(import.meta.env.VITE_LOYALTY_MAX_RATE ?? 100);
 
 /** Env var names — shown in the admin panel so the owner can find them. */
 export const LOYALTY_5STAR_ENV = "NEXT_PUBLIC_LOYALTY_5STAR_BONUS";

@@ -13,7 +13,7 @@
  * verify_usdt edge function without code edits).
  */
 export const DEPOSIT_ADDRESS =
-  (process.env.NEXT_PUBLIC_DEPOSIT_ADDRESS || "0xc689e735915682ddBaF3c4B570942ee2bd788705").toLowerCase();
+  (import.meta.env.VITE_DEPOSIT_ADDRESS || "0xc689e735915682ddBaF3c4B570942ee2bd788705").toLowerCase();
 
 export interface DepositNetwork {
   id: string;
@@ -118,7 +118,7 @@ export function hasFirstDepositBonus(deposits: Array<{ status: string; purpose?:
  * records the deposit. Falls back to "" when Supabase is not configured.
  */
 export function depositEndpoint(): string {
-  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const base = import.meta.env.VITE_SUPABASE_URL;
   if (base && /^https?:\/\//.test(base)) return `${base.replace(/\/$/, "")}/functions/v1/verify_usdt`;
   return "";
 }

@@ -1,4 +1,3 @@
-"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { WifiOff, RotateCw, X } from "lucide-react";

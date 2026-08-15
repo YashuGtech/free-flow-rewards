@@ -1,4 +1,3 @@
-"use client";
 
 import clsx from "clsx";
 import { Crown, Sparkles, BadgeCheck } from "lucide-react";

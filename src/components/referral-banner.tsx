@@ -1,4 +1,3 @@
-"use client";
 
 import { useState } from "react";
 import { Gift, Copy, Check, Users, LockOpen, Lock, Crown, TrendingUp } from "lucide-react";
