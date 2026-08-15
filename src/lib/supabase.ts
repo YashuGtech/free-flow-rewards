@@ -900,7 +900,7 @@ export function syncNow(scopes: SyncScope[], state: any): void {
       case "chats":
         Object.values(state.chats ?? {})
           .flat()
-          .forEach((m) => queueWrite("chat_messages", chatMessageToRow(m)));
+          .forEach((m) => queueWrite("chat_messages", chatMessageToRow(m as ChatMessage)));
         break;
     }
   }
