@@ -71,6 +71,8 @@ export default function TaskModal({
     }
     setProof({ handle: tgHandle });
     setSubmitted(false);
+    setAskAd(false);
+    setAdWatched(false);
     const t = setInterval(() => {
       setTimer((x) => (x > 0 ? x - 1 : 0));
     }, 1000);
