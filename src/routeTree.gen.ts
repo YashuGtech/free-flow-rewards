@@ -9,27 +9,181 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CampaignsRouteImport } from './routes/campaigns'
+import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PromoteRouteImport } from './routes/promote'
+import { Route as UsersHandleRouteImport } from './routes/users.$handle'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampaignsRoute = CampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadsRoute = LeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromoteRoute = PromoteRouteImport.update({
+  id: '/promote',
+  path: '/promote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersHandleRoute = UsersHandleRouteImport.update({
+  id: '/users/$handle',
+  path: '/users/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/campaigns': typeof CampaignsRoute
+  '/leads': typeof LeadsRoute
+  '/profile': typeof ProfileRoute
+  '/promote': typeof PromoteRoute
+  '/users/$handle': typeof UsersHandleRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/campaigns': typeof CampaignsRoute
+  '/leads': typeof LeadsRoute
+  '/profile': typeof ProfileRoute
+  '/promote': typeof PromoteRoute
+  '/users/$handle': typeof UsersHandleRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/campaigns': typeof CampaignsRoute
+  '/leads': typeof LeadsRoute
+  '/profile': typeof ProfileRoute
+  '/promote': typeof PromoteRoute
+  '/users/$handle': typeof UsersHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/campaigns'
+    | '/leads'
+    | '/profile'
+    | '/promote'
+    | '/users/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to:
+    | '/'
+    | '/admin'
+    | '/campaigns'
+    | '/leads'
+    | '/profile'
+    | '/promote'
+    | '/users/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/campaigns'
+    | '/leads'
+    | '/profile'
+    | '/promote'
+    | '/users/$handle'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  CampaignsRoute: typeof CampaignsRoute
+  LeadsRoute: typeof LeadsRoute
+  ProfileRoute: typeof ProfileRoute
+  PromoteRoute: typeof PromoteRoute
+  UsersHandleRoute: typeof UsersHandleRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campaigns': {
+      id: '/campaigns'
+      path: '/campaigns'
+      fullPath: '/campaigns'
+      preLoaderRoute: typeof CampaignsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leads': {
+      id: '/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof LeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promote': {
+      id: '/promote'
+      path: '/promote'
+      fullPath: '/promote'
+      preLoaderRoute: typeof PromoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/$handle': {
+      id: '/users/$handle'
+      path: '/users/$handle'
+      fullPath: '/users/$handle'
+      preLoaderRoute: typeof UsersHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  CampaignsRoute: CampaignsRoute,
+  LeadsRoute: LeadsRoute,
+  ProfileRoute: ProfileRoute,
+  PromoteRoute: PromoteRoute,
+  UsersHandleRoute: UsersHandleRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
